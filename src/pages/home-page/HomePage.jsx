@@ -5,34 +5,37 @@ import godlikeLogo from '../../assets/godlike.png'
 function HomePage() {
   return (
     <main className="landing-page">
-      {/* Content behind */}
+      {/* Content behind — revealed after splash */}
       <section className="landing-page__content">
         <h1 className="landing-page__title">Godlike</h1>
       </section>
 
-      {/* Black overlay */}
+      {/* Black splash overlay */}
       <motion.div
         className="landing__overlay"
         initial={{ opacity: 1 }}
         animate={{ opacity: 0 }}
         transition={{
           duration: 1.2,
-          delay: 4.2, // ⬅ waits until logo fully fades out
+          delay: 4.9, // 0.5s black + 0.6s fade-in + 2.5s hold + 1.3s logo fade-out
           ease: 'easeInOut',
         }}
         style={{ pointerEvents: 'none' }}
         aria-hidden
       >
         <div className="landing__hero">
+          {/* Logo fade-in — after 0.5s black */}
           <motion.div
             className="landing__logo-wrap"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{
-              duration: 0.4, // quick fade-in
+              delay: 0.5, // complete black for 0.5s first
+              duration: 0.6,
               ease: 'easeOut',
             }}
           >
+            {/* Logo fade-out */}
             <motion.img
               src={godlikeLogo}
               alt="Godlike"
@@ -40,8 +43,8 @@ function HomePage() {
               initial={{ opacity: 1 }}
               animate={{ opacity: 0 }}
               transition={{
-                delay: 2.9, // ⬅ 0.4 fade-in + 2.5s HOLD
-                duration: 1.3, // slow fade-out
+                delay: 3.6, // 0.5s black + 0.6s fade-in + 2.5s hold
+                duration: 1.3,
                 ease: 'easeInOut',
               }}
             />
